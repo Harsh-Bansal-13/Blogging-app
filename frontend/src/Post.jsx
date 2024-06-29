@@ -78,7 +78,7 @@ function Post() {
                 </div>
                 <button
                   onClick={() => handleDelete(post._id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-600"
                 >
                   Delete
                 </button>
