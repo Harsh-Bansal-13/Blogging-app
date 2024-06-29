@@ -16,7 +16,8 @@ mongoose.connect(
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://blogging-app-ashy-iota.vercel.app/"],
+    // origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
