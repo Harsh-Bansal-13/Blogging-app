@@ -11,6 +11,7 @@ import axios from "axios";
 import CreatePost from "./CreatePost";
 import Post from "./Post";
 import EditPost from "./EditPost";
+import Notifications from "./Notifications";
 
 export const userContext = createContext();
 
@@ -20,11 +21,12 @@ function App() {
     email: null,
   });
 
-  axios.defaults.withCredentials = true;
+  // axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
       .get("/status")
       .then((user) => {
+        console.log(user);
         setUser(user.data);
       })
       .catch((err) => console.log(err));
@@ -39,6 +41,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/create" element={<CreatePost />}></Route>
+          <Route path="/notifications" element={<Notifications />}></Route>
           <Route path="/user" element={<User />}></Route>
           <Route path="/post/:id" element={<Post />}></Route>
           <Route path="/user/myposts" element={<Myposts />}></Route>

@@ -12,7 +12,10 @@ function Navbar() {
     axios
       .get("/logout")
       .then((res) => {
-        if (res.data === "Success") navigate(0);
+        if (res.data === "Success") {
+          navigate(0);
+          navigate("/");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -29,17 +32,22 @@ function Navbar() {
             Home
           </Link>
         </div>
-        {user.username && (
+        {user.email && (
           <Link to="/create" className="link">
             Create
           </Link>
         )}
-        {user.username && (
+        {user.email && (
+          <Link to="/notifications" className="link">
+            Notifications
+          </Link>
+        )}
+        {user.email && (
           <Link to="/user" className="link">
             Profile
           </Link>
         )}
-        {user.username ? (
+        {user.email ? (
           <div>
             <input
               type="button"

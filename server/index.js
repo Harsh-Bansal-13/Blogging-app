@@ -27,6 +27,7 @@ app.use(express.static("public"));
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
+  console.log("ahsrh");
   if (!token) {
     return res.json("The token is missing");
   } else {
@@ -43,6 +44,7 @@ const verifyUser = (req, res, next) => {
 };
 
 app.get("/status", verifyUser, (req, res) => {
+  console.log("Harsh");
   return res.json({ email: req.email, username: req.username });
 });
 
@@ -118,6 +120,41 @@ app.get("/getposts", (req, res) => {
   PostModel.find()
     .then((posts) => res.json(posts))
     .catch((err) => res.json(err));
+});
+app.post("/sendPost", async (req, res) => {
+  const { senderEmail, recipientEmail, postId } = req.body;
+
+  try {
+    const recipient = await UserModel.findOne({ email: recipientEmail });
+
+    if (!recipient) {
+      return res.status(404).json({ message: "Recipient not found" });
+    }
+
+    recipient.notifications.push({ postId, senderEmail });
+    await recipient.save();
+
+    res.status(200).json({ message: "Post shared successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+});
+app.get("/notifications/:email", async (req, res) => {
+  const { email } = req.params;
+  console.log(email);
+  try {
+    const user = await UserModel.findOne({ email }).populate(
+      "notifications.postId"
+    );
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(user.notifications);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
 });
 
 app.get("/getpostbyid/:id", (req, res) => {

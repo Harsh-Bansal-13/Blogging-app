@@ -6,6 +6,8 @@ import { userContext } from "./App";
 function Post() {
   const { id } = useParams();
   const [post, setPost] = useState({});
+  const [recipientEmail, setRecipientEmail] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const user = useContext(userContext);
 
@@ -23,6 +25,28 @@ function Post() {
         navigate("/");
       })
       .catch((err) => console.log(err));
+  };
+  const sendPost = () => {
+    const data = {
+      senderEmail: user.email,
+      recipientEmail,
+      postId: id,
+    };
+
+    axios
+      .post("/sendPost", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setShowModal(false);
+        alert("Post sent successfully!");
+      })
+      .catch((error) => {
+        console.error("Error sending post:", error);
+        alert("Failed to send post.");
+      });
   };
 
   return (
@@ -60,9 +84,44 @@ function Post() {
                 </button>
               </>
             ) : null}
+            <button
+              onClick={() => setShowModal(true)}
+              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+            >
+              Send Post
+            </button>
           </div>
         </div>
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] md:w-[50%] lg:w-[30%]">
+            <h2 className="text-xl font-bold mb-4">Send Post</h2>
+            <input
+              type="email"
+              placeholder="Recipient's Email"
+              value={recipientEmail}
+              onChange={(e) => setRecipientEmail(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md mb-4"
+            />
+            <div className="flex justify-end gap-4">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={sendPost}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
