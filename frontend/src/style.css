@@ -1,0 +1,174 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+}
+
+.navbar-header {
+    width: 100%;
+    height: 40px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(79deg, rgb(3, 3, 154), rgb(207, 8, 41), rgb(4, 4, 150));
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+.signup_container,
+.post_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.signup_form {
+    border: 1px solid gray;
+    padding: 20px;
+    border-radius: 10px;
+    /* width: 30%; */
+
+}
+
+.signup_form form input {
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 2px;
+    width: 100%;
+    border: 1px solid rgb(216, 213, 213);
+}
+
+.signup_form form button,
+.signup_form button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid rgb(216, 213, 213);
+
+}
+
+.signup_form form button {
+    background-color: rgb(17, 80, 227);
+    color: white;
+}
+
+.signup_form button {
+    background-color: rgb(3, 177, 18);
+    color: white;
+}
+
+.signup_btn {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.btn_input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.post_form {
+    width: 50%;
+    border: 1px solid gray;
+    padding: 20px;
+}
+
+.post_form input,
+.post_form textarea,
+.post_form button {
+    width: 100%;
+    margin: 10px 0px;
+    padding: 8px;
+}
+
+.post_form .file {
+    border: 1px solid gray;
+}
+
+.post_form button {
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+
+.posts_container {
+    /* margin-left: 200px; */
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.post {
+    width: 95%;
+    margin: 1rem;
+    border: 1px solid gray;
+    padding: 10px;
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+.post img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.post .post_text {
+    margin-left: 10px;
+}
+
+.post_post {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* margin: 20px 0px; */
+}
+
+.post_post img {
+    width: 50%;
+    height: 450px;
+}
+
+.post_post button {
+    width: 15%;
+    margin: 1rem;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-card {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width:800px) {}
